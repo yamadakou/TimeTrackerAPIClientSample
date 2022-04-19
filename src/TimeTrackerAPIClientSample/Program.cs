@@ -39,10 +39,10 @@ namespace TimeTrackerAPIClientSample
             // 検索フィルターの条件に一致するプロジェクトの件数を出力
             Console.WriteLine($"TotalCount={projects.TotalCount}");
 
-            // 取得したプロジェクトの情報を出力
-            foreach (var project in projects.Data)
+            // 取得したプロジェクトの情報を出力（プロジェクトの計画開始日順に出力）
+            foreach (var project in projects.Data.OrderBy(p => p.PlannedStartDate))
             {
-                Console.WriteLine($"[{project.Code}]{project.Name}　期間：{project.PlannedStartDate.Date.ToString("yyyy/MM/DD")}～{project.PlannedFinishDate.Date.ToString("yyyy/MM/DD")}");
+                Console.WriteLine($"期間：{project.PlannedStartDate.Date.ToString("yyyy/MM/dd")}～{project.PlannedFinishDate.Date.ToString("yyyy/MM/dd")} [{project.Code}]{project.Name}");
             }
         }
     }
